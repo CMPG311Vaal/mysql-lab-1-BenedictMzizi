@@ -1,0 +1,117 @@
+#(#poppulating Creating Tables)
+create table BankBranch(
+	branch_name VARCHAR(20) NOT NULL,
+	branch_city VARCHAR(20) NOT NULL,
+	assets DOUBLE,
+	PRIMARY KEY (branch_name)
+);
+create table Customer(
+	customer_name VARCHAR(20),
+	customer_street VARCHAR(20),
+	customer_city VARCHAR(20),
+	PRIMARY KEY (customer_street)
+);
+create table CustomerAccount(
+	account_number CHAR(13),
+	branch_name VARCHAR(20) NOT NULL,
+	balance DOUBLE,
+	PRIMARY KEY (account_number)
+);
+create table Loan(
+	loan_number CHAR(13),
+	branch_name VARCHAR(20) NOT NULL,
+	amount DOUBLE NOT NULL,
+	PRIMARY KEY (loan_number)
+);
+create table Depositor(
+	customer_name VARCHAR(20) NOT NULL,
+	account_number VARCHAR(20) NOT NULL,
+	PRIMARY KEY (account_number)
+);
+create table Borrower(
+	customer_name VARCHAR(20) NOT NULL,
+	loan_number CHAR(13),
+	PRIMARY KEY (loan_number)
+);
+create table Employee(
+	employee_name VARCHAR(20) NOT NULL,
+	branch_name VARCHAR(20) NOT NULL,
+	salary DOUBLE NOT NULL,
+	PRIMARY KEY (employee_name)
+);
+#(#poppulating CustomerAccount)
+insert into CustomerAccount values('A-5324','Newtown',500);
+insert into CustomerAccount values('A-5624','Sunnyside',400);
+insert into CustomerAccount values('A-7794','Midrand',900);
+insert into CustomerAccount values('A-4467','Mabopane',700);
+insert into CustomerAccount values('A-3546','Midrand',750);
+insert into CustomerAccount values('A-3453','Universitas',700);
+insert into CustomerAccount values('A-2542','Mamelodi',350);
+#(#poppulating BankBranch)
+insert into BankBranch values('Midrand', 'Johannesburg', 7100000);
+insert into BankBranch values('Newtown', 'Johannesburg', 9000000);
+insert into BankBranch values('Mabopane', 'Pretoria', 400000);
+insert into BankBranch values('Belgravia', 'Kimberly', 3700000);
+insert into BankBranch values('Sunnyside', 'Pretoria', 1700000);
+insert into BankBranch values('Amanzimtoto', 'Durban', 300000);
+insert into BankBranch values('Universitas', 'Bloemfontein', 2100000);
+insert into BankBranch values('Mamelodi', 'Pretoria', 8000000);
+#(#poppulating Customer)
+insert into customer values('Modise', 'Spring', 'George');
+insert into customer values('Brooks', 'Senator', 'Johannesburg');
+insert into customer values('Jooste', 'North', 'Kimberly');
+insert into customer values('Lombard', 'Sand Hill', 'Nelspruit');
+insert into customer values('Mokwena', 'Walnut', 'Port_Elizabeth');
+insert into customer values('Johnson', 'Mmabatho', 'Mafikeng');
+insert into customer values('Johnson', 'Alma', 'Bloemfontein');
+insert into customer values('Zwane', 'Main', 'Mafikeng');
+insert into customer values('Lindsay', 'Park', 'George');
+insert into customer values('Smith', 'North', 'Kimberly');
+insert into customer values('Dlamini', 'Putnam', 'Port_Elizabeth');
+insert into customer values('Williams', 'Nassau', 'Giyane');
+#(#poppulating Depositor)
+insert into Depositor values('Johnson','A-5624');
+insert into Depositor values('Johnson','A-5624');
+insert into Depositor values('Johnson','A-7794');
+insert into Depositor values('Zwane','A-3546');
+insert into Depositor values('Lindsay','A-3453');
+insert into Depositor values('Smith','A-4467');
+insert into Depositor values('Johnson','A-2542');
+#(#poppulating Loan)
+insert into Loan values('L-11','Mamelodi',900);
+insert into Loan values('L-14','Newtown',1500);
+insert into Loan values('L-15','Sunnyside',1500);
+insert into Loan values('L-16','Sunnyside',1300);
+insert into Loan values('L-17','Newtown',1000);
+insert into Loan values('L-23','Universitas',2000);
+insert into Loan values('L-93','Mabopane',500);
+#(#poppulating Borrowed)
+insert into Borrower values('Modise','L-16');
+insert into Borrower values('Jooste','L-93');
+insert into Borrower values('Johnson','L-15');
+insert into Borrower values('Jackson','L-14');
+insert into Borrower values('Zwane','L-17');
+insert into Borrower values('Smith','L-11');
+insert into Borrower values('Smith','L-23');
+insert into Borrower values('Williams','L-17');
+#(#poppulating Employee)
+insert into Employee values('Modise','Sunnyside',1500);
+insert into Employee values('Brown','Sunnyside',1300);
+insert into Employee values('Gopal','Sunnyside',5300);
+insert into Employee values('Johnson','Newtown',1500);
+insert into Employee values('Loreena','Newtown',1300);
+insert into Employee values('Peterson','Newtown',2500);
+insert into Employee values('Rao','Austin',1500);
+insert into Employee values('Sato','Austin',1600);
+#(#displaying Q4)
+select * from tablename where columnname < 700;
+select customer_name from Customer where customer_city = 'Johannesburg';
+select * from Employee where salary > 1500 and NOT customer_city = 'Newtown';
+select avg(salary) from Employee;
+select * from BankBranch order by -assets limit 1;
+#(#displaying Q5)
+select * from Employee where branch_name = 'Sunnyside';
+select * from Borrower;
+select account_number from CustomerAccounts where balance > 900;
+select account_number from CustomerAccount where branch_name = 'Newtown' and balance>600;
+select branch_name,assets from BankBranch;
